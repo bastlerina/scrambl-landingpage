@@ -1,0 +1,14 @@
+      <div class="zhdk-card legal-content">
+        <h3>Über das Experiment «SkillMatching»</h3>
+        <p>ZHdK stellt in ihrer Strategie und im Leitbild den Anspruch, ihre Studierenden für eine professionelle Tätigkeit im kulturellen Sektor und in weiteren wirtschaftlichen und gesellschaftlichen Bereichen zu qualifizieren. Die Lehre soll sich an den aktuellen Ansprüchen möglicher Tätigkeitsfelder orientieren, diese vorwegnehmen und sie mitprägen.</p>
+        <p>Die Stelle Akkreditierung und Qualitätsentwicklung der ZHdK und das <a href="http://www.creativeeconomies.com/" target="_blank" rel="noopener">ZCCE</a> haben zu diesem Anspruch das Projekt «SkillMatching» lanciert. Hier fliessen Erkenntnisse der langjährigen Forschung des ZCCE zu den Arbeitsmärkten in den Creative Economies und zentrale Anliegen der Major-Minor Studienreform der ZHdK 2024 zusammen.</p>
+        <p>Das Projekt «SkillMatching» ist ein Experiment im Sinne des <a href="https://www.zhdk.ch/en/zcce/research-8033" target="_blank" rel="noopener">Forschungsverständnisses des ZCCE</a>, welches am <a href="https://www.zhdk.ch/zcce/cef" target="_blank" rel="noopener">Creative Economies Forum 2022 (CEF22)</a> zum ersten Mal präsentiert wird. Grundlage für das Experiment sind alle Majorprogramme, die 2022 von der HSL für die Einführung in 2024 genehmigt wurden.</p>
+        <p>Der ZHdK «SkillMatcher» ermittelt basierend auf hinterlegten Kompetenzprofilen der ZHdK-Studiengänge die Überschneidung mit Anforderungsprofilen aus Stelleninseraten. Den ZHdK-Studierenden werden die passendsten Berufsprofile für ihre Skills und offenen Stellen angezeigt.</p>
+        <p>Das ZCCE nutzt die Erfahrungen am CEF22 für die Weiterbearbeitung des Forschungsfeldes «Skills». Die Stelle Akkreditierung und Qualitätsentwicklung wird diese für die internen Prozesse der Studiengangentwicklung und -qualitätssicherung nutzbar machen.</p>
+        <p>Auf <a href="http://www.creativeeconomies.com" target="_blank" rel="noopener">www.creativeeconomies.com</a> wird über den weiteren Verlauf des Projektes informiert.</p>
+      </div>
+      <div class="zhdk-card legal-content">
+        <h3>Über Scrambl.</h3>
+        <p>Die Firma Scrambl. ist Projektpartner. Auf Basis eines innovativen Skill-Matching Algorithmus und einer selbstlernenden Skill-Datenbank bestehend aus ca. 70'000 Skills und mehr als 5 Mio. einzigartigen semantischen Beziehungen, bringt Scrambl. Arbeitnehmende und Arbeitgebende zusammen. Die intelligente Technologie gleicht Job- und Ausbildungsprofile mit den Anforderungen aus täglich 180'000 Stellenausschreibungen von Schweizer Unternehmen ab.</p>
+        <p>So findet Scrambl. für Arbeitssuchende genau die Jobs, die zu ihren individuellen Fähigkeiten und Lebenssituationen passen – und Unternehmen erhalten die passendsten Kandidat:innen für ihre Stellenausschreibungen.</p>
+      </div>
