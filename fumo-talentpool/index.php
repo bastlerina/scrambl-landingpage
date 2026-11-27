@@ -31,7 +31,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Heebo,"Helvet
 /* Inhalt */
 main{flex:1}
 .band{padding:clamp(56px,9vw,120px) max(5vw,16px) clamp(80px,11vw,150px)}
-.wrap{max-width:560px;margin:0 auto}
+.wrap{max-width:780px;margin:0 auto}
 h1{font-weight:700;font-size:clamp(32px,5vw,46px);line-height:1.1;margin:0 0 16px;text-wrap:balance}
 .intro{font-size:17px;margin:0 0 36px;max-width:60ch}
 
@@ -99,7 +99,7 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
   <h1>Werde Teil vom Team Fuchs-Movesa.</h1>
   <p class="intro">Du begeisterst dich für Bikes, Outdoor und Sport? Hinterlasse uns deine Kontaktdaten und deinen Wunschberuf. Sobald eine passende Stelle frei wird, melden wir uns bei dir.</p>
 
-  <form id="f" action="/fumo/senden.php" method="post" novalidate>
+  <form id="f" action="/fumo-talentpool/senden.php" method="post" novalidate>
     <div class="hp" aria-hidden="true"><label for="firma">Firma</label><input id="firma" name="firma" type="text" tabindex="-1" autocomplete="off"></div>
     <div class="field"><input id="vorname" name="vorname" type="text" autocomplete="given-name" placeholder=" " required><label for="vorname">Vorname *</label><span class="msg" id="vorname-m"></span></div>
     <div class="field"><input id="nachname" name="nachname" type="text" autocomplete="family-name" placeholder=" " required><label for="nachname">Nachname *</label><span class="msg" id="nachname-m"></span></div>

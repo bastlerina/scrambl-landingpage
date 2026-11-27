@@ -1,7 +1,7 @@
 <?php
 /**
  * Fumo Talentpool – Versand per E-Mail
- * Seite: scrambl.org/fumo (fumo/index.php), dieses Skript: scrambl.org/fumo/senden.php
+ * Seite: scrambl.org/fumo-talentpool (fumo-talentpool/index.php), dieses Skript: scrambl.org/fumo-talentpool/senden.php
  * Nutzt den bestehenden Mailversand der Website (mailer.php, Brevo-Einstellungen aus config.php).
  * Ändert keine bestehenden Dateien und schreibt nichts in die Datenbank.
  */
@@ -11,7 +11,7 @@ require_once __DIR__ . '/../mailer.php';
 // ---- Einstellungen ---------------------------------------------------------
 const EMPFAENGER = 'app@scrambl.org';                 // wer die Anmeldungen bekommt (eine Adresse)
 const BETREFF    = 'Neue Anmeldung Fumo Talentpool';
-const QUELLE     = 'Fumo Talentpool (QR-Code, scrambl.org/fumo)';
+const QUELLE     = 'Fumo Talentpool (QR-Code, scrambl.org/fumo-talentpool)';
 const MAX_PRO_STUNDE = 10;                           // Schutz vor Missbrauch pro IP-Adresse
 // ---------------------------------------------------------------------------
 
