@@ -77,6 +77,9 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
 .foot .in{max-width:1380px;margin:0 auto;padding:12px max(5vw,16px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:4px 24px}
 .foot a{color:#fff;text-decoration:none;font-weight:500}
 .foot a:hover{text-decoration:underline}
+.foot .legal{display:flex;flex-wrap:wrap;gap:4px 20px}
+.foot .legal a{color:#cdcdcd;font-weight:400;padding:6px 0;margin:-6px 0}
+.foot .legal a:hover{color:#fff}
 
 @media(max-width:600px){
   form{grid-template-columns:minmax(0,1fr)}
@@ -120,7 +123,7 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
 </div></section></main>
 
 <footer class="foot"><div class="in">
-  <span>© Fuchs-Movesa AG</span>
+  <nav class="legal" aria-label="Rechtliches"><span>© Fuchs-Movesa AG</span><a href="/agb.php" target="_blank" rel="noopener">AGB</a><a href="/datenschutz.php" target="_blank" rel="noopener">Datenschutz</a></nav>
   <span>powered by <a href="https://scrambl.org" target="_blank" rel="noopener">Scrambl.</a></span>
 </div></footer>
 
