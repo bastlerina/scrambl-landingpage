@@ -10,8 +10,7 @@ require_once __DIR__ . '/../mailer.php';
 
 // ---- Einstellungen ---------------------------------------------------------
 const EMPFAENGER = 'app@scrambl.org';                 // wer die Anmeldungen bekommt (eine Adresse)
-const BETREFF    = 'Neue Anmeldung Fumo Talentpool';
-const QUELLE     = 'Fumo Talentpool (QR-Code, scrambl.org/fumo-talentpool)';
+const SEITE      = 'https://www.scrambl.org/fumo-talentpool/';
 const MAX_PRO_STUNDE = 10;                           // Schutz vor Missbrauch pro IP-Adresse
 // ---------------------------------------------------------------------------
 
@@ -77,20 +76,40 @@ if ($fehler) {
 }
 
 // E-Mail zusammenstellen
-$text = "Neue Anmeldung Fumo Talentpool\n\n";
-foreach ($d as $k => $v) {
-    $text .= str_pad($k . ':', 14) . $v . "\n";
-}
-$ja = fn($n) => empty($_POST[$n]) ? 'Nein' : 'Ja';
-$text .= "\nDatenschutz zur Kenntnis:  " . $ja('privacy') . "\n";
-$text .= "\nEingegangen:  " . date('d.m.Y, H:i') . " Uhr\n";
-$text .= 'Quelle:       ' . QUELLE . "\n";
+$name = $d['Vorname'] . ' ' . $d['Nachname'];
+$tage = ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'];
+$zeit = $tage[(int) date('w')] . ', ' . date('d.m.Y') . ', ' . date('H:i') . ' Uhr';
+$zeile = fn(string $label, string $wert) => str_pad($label, 16) . $wert . "\n";
+
+$text  = "Neue Anmeldung im Fumo Talentpool (Fuchs-Movesa)\n\n";
+$text .= $name . " hat sich über die Landingpage " . SEITE . " für den Talentpool von Fuchs-Movesa angemeldet.\n\n";
+
+$text .= "KONTAKT\n";
+$text .= $zeile('Vorname:', $d['Vorname']);
+$text .= $zeile('Nachname:', $d['Nachname']);
+$text .= $zeile('Telefon:', $d['Telefon']);
+$text .= $zeile('E-Mail:', $d['E-Mail']);
+
+$text .= "\nWUNSCHBERUF\n" . $d['Wunschberuf'] . "\n";
+
+$text .= "\nEINWILLIGUNG\n";
+$text .= "Die Person hat per Checkbox bestätigt, dass sie die Datenschutzerklärung zur Kenntnis genommen hat.\n";
+$text .= "Datenschutzerklärung: https://www.scrambl.org/datenschutz.php\n";
+
+$text .= "\nHERKUNFT\n";
+$text .= $zeile('Eingegangen:', $zeit);
+$text .= $zeile('Formular:', 'Fumo Talentpool');
+$text .= $zeile('Unternehmen:', 'Fuchs-Movesa');
+$text .= $zeile('Kanal:', 'QR-Code-Kampagne');
+$text .= $zeile('Seite:', SEITE);
+
+$text .= "\nMit «Antworten» schreibst du direkt an " . $d['E-Mail'] . ".\n";
 
 $gesendet = send_mail(
     EMPFAENGER,
-    BETREFF . ': ' . $d['Vorname'] . ' ' . $d['Nachname'],
+    'Fumo Talentpool – neue Anmeldung: ' . $name . ' (' . $d['Wunschberuf'] . ')',
     $text,
-    ['email' => $d['E-Mail'], 'name' => $d['Vorname'] . ' ' . $d['Nachname']]
+    ['email' => $d['E-Mail'], 'name' => $name]
 );
 
 if (!$gesendet) {
