@@ -1,6 +1,6 @@
 <?php
 /**
- * Talentpool Fuchs-Movesa – Versand per E-Mail
+ * Fumo Talentpool – Versand per E-Mail
  * Seite: scrambl.org/fumo (fumo/index.php), dieses Skript: scrambl.org/fumo/senden.php
  * Nutzt den bestehenden Mailversand der Website (mailer.php, Brevo-Einstellungen aus config.php).
  * Ändert keine bestehenden Dateien und schreibt nichts in die Datenbank.
@@ -10,8 +10,8 @@ require_once __DIR__ . '/../mailer.php';
 
 // ---- Einstellungen ---------------------------------------------------------
 const EMPFAENGER = 'app@scrambl.org';                 // wer die Anmeldungen bekommt (eine Adresse)
-const BETREFF    = 'Neue Anmeldung Talentpool Fuchs-Movesa';
-const QUELLE     = 'QR-Code Fuchs-Movesa (scrambl.org/fumo)';
+const BETREFF    = 'Neue Anmeldung Fumo Talentpool';
+const QUELLE     = 'Fumo Talentpool (QR-Code, scrambl.org/fumo)';
 const MAX_PRO_STUNDE = 10;                           // Schutz vor Missbrauch pro IP-Adresse
 // ---------------------------------------------------------------------------
 
@@ -71,15 +71,20 @@ if ($d['Nachname'] === '')    $fehler[] = 'nachname';
 if (!preg_match('/^[+\d][\d\s()\/-]{6,}$/', $d['Telefon'])) $fehler[] = 'telefon';
 if (!filter_var($d['E-Mail'], FILTER_VALIDATE_EMAIL))      $fehler[] = 'email';
 if ($d['Wunschberuf'] === '') $fehler[] = 'wunschberuf';
+if (empty($_POST['privacy'])) $fehler[] = 'privacy';
 if ($fehler) {
     antwort(422, ['ok' => false, 'fehler' => 'Bitte prüfe deine Angaben.', 'felder' => $fehler]);
 }
 
 // E-Mail zusammenstellen
-$text = "Neue Anmeldung für den Talentpool Fuchs-Movesa\n\n";
+$text = "Neue Anmeldung Fumo Talentpool\n\n";
 foreach ($d as $k => $v) {
     $text .= str_pad($k . ':', 14) . $v . "\n";
 }
+$ja = fn($n) => empty($_POST[$n]) ? 'Nein' : 'Ja';
+$text .= "\nScrambl. Talentpool:       " . $ja('talentpool') . "\n";
+$text .= "Zugang für Offumo:         " . $ja('partner_access') . "\n";
+$text .= "Datenschutz zur Kenntnis:  " . $ja('privacy') . "\n";
 $text .= "\nEingegangen:  " . date('d.m.Y, H:i') . " Uhr\n";
 $text .= 'Quelle:       ' . QUELLE . "\n";
 
@@ -91,7 +96,7 @@ $gesendet = send_mail(
 );
 
 if (!$gesendet) {
-    error_log('Talentpool Fuchs-Movesa: E-Mail konnte nicht gesendet werden.');
+    error_log('Fumo Talentpool: E-Mail konnte nicht gesendet werden.');
     antwort(500, ['ok' => false, 'fehler' => 'Das Senden hat nicht geklappt. Bitte versuche es später nochmals.']);
 }
 

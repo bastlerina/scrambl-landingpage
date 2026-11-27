@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Talentpool Fuchs-Movesa</title>
+<title>Fumo Talentpool</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
@@ -56,6 +56,15 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
 
 .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .senderr{color:var(--err);font-size:14px;margin:12px 0 0;min-height:1px}
+.checks{grid-column:1/-1;display:grid;gap:12px;margin-top:4px}
+.check{display:flex;gap:12px;align-items:flex-start;cursor:pointer;font-size:15px;line-height:1.45}
+.check input{-webkit-appearance:none;appearance:none;flex:none;width:20px;height:20px;margin:1px 0 0;border:1px solid var(--muted);border-radius:0;background:var(--bg);cursor:pointer;display:grid;place-content:center;transition:all .2s}
+.check input:checked{background:var(--btn);border-color:var(--btn)}
+.check input:checked::after{content:"";width:11px;height:6px;border:solid var(--btn-ink);border-width:0 0 2px 2px;transform:translateY(-2px) rotate(-45deg)}
+.check input:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.check a{color:var(--ink);text-decoration:underline}
+.check.bad input{border-color:var(--err);background:light-dark(#ffc3c3,#4a1f1f)}
+.checks .msg{display:block;min-height:18px;font-size:13px;color:var(--err);padding-left:32px}
 /* Bestätigung */
 .done{display:none;background:var(--soft);padding:28px 28px 30px;border-left:4px solid var(--ok)}
 .done h2{font-size:24px;line-height:1.2;margin:0 0 8px}
@@ -94,7 +103,13 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
     <div class="field"><input id="telefon" name="telefon" type="tel" autocomplete="tel" inputmode="tel" placeholder=" " required><label for="telefon">Telefon *</label><span class="msg" id="telefon-m"></span></div>
     <div class="field"><input id="email" name="email" type="email" autocomplete="email" placeholder=" " required><label for="email">E-Mail *</label><span class="msg" id="email-m"></span></div>
     <div class="field full"><input id="beruf" name="wunschberuf" type="text" placeholder=" " required><label for="beruf">Wunschberuf *</label><span class="msg" id="beruf-m"></span></div>
-    <p class="consent">Mit dem Absenden nehmen wir dich in unseren Talentpool auf. Deine Daten behandeln wir vertraulich und löschen sie jederzeit auf Wunsch.</p>
+    <p class="consent">Wir achten darauf, sorgfältig und respektvoll mit deinen Bewerberinformationen umzugehen. Deine Daten werden in der Regel nach 3 Monaten gelöscht, wenn kein aktiver Bewerbungsprozess besteht oder wenn du nicht in den Talentpool aufgenommen wirst. Wenn du zustimmst, im Talentpool zu sein, werden deine Daten ein Jahr gespeichert. So können wir dich für zukünftige Stellenangebote berücksichtigen und dich direkt kontaktieren, wenn passende Möglichkeiten verfügbar sind. Auf deinen Wunsch hin können wir deine Daten jederzeit löschen – hierfür reicht eine kurze Anfrage.</p>
+    <div class="checks">
+      <label class="check"><input type="checkbox" name="talentpool" value="1"><span>Ich möchte Teil des Scrambl. Talentpools werden</span></label>
+      <label class="check"><input type="checkbox" name="partner_access" value="1"><span>Ich möchte, dass Offumo Zugang zu meinem Talentpool-Profil erhält</span></label>
+      <label class="check" id="privacy-f"><input type="checkbox" id="privacy" name="privacy" value="1" required aria-describedby="privacy-m"><span>Ich habe die <a href="/datenschutz.php" target="_blank" rel="noopener">Datenschutzerklärung</a> zur Kenntnis genommen *</span></label>
+      <span class="msg" id="privacy-m"></span>
+    </div>
     <div class="actions"><button type="submit" id="send">Absenden</button><p class="senderr" id="senderr" role="alert"></p></div>
   </form>
 
@@ -132,6 +147,15 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
     el.addEventListener('blur',()=>{ if(el.value) check(id); });
     el.addEventListener('input',()=>{ if(el.closest('.field').classList.contains('bad')) check(id); });
   });
+  const priv=document.getElementById('privacy');
+  const checkPrivacy=()=>{
+    const ok=priv.checked;
+    document.getElementById('privacy-f').classList.toggle('bad',!ok);
+    priv.setAttribute('aria-invalid',ok?'false':'true');
+    document.getElementById('privacy-m').textContent=ok?'':'Bitte bestätige, dass du die Datenschutzerklärung zur Kenntnis genommen hast.';
+    return ok;
+  };
+  priv.addEventListener('change',()=>{ if(document.getElementById('privacy-f').classList.contains('bad')) checkPrivacy(); });
   const btn=document.getElementById('send'), err=document.getElementById('senderr');
   const map={wunschberuf:'beruf'};
   const done=()=>{
@@ -143,7 +167,9 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
     e.preventDefault();
     err.textContent='';
     const bad=Object.keys(rules).filter(id=>!check(id));
+    const pOk=checkPrivacy();
     if(bad.length){ document.getElementById(bad[0]).focus(); return; }
+    if(!pOk){ priv.focus(); return; }
     // Vorschau ausserhalb von scrambl.org: nichts senden, nur Bestätigung zeigen
     if(!/(^|\.)scrambl\.org$/.test(location.hostname)){ done(); return; }
     btn.disabled=true; btn.textContent='Wird gesendet …';
@@ -151,7 +177,7 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
       const r=await fetch(f.getAttribute('action'),{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}});
       const j=await r.json().catch(()=>({}));
       if(r.ok && j.ok){ done(); return; }
-      (j.felder||[]).forEach(n=>check(map[n]||n));
+      (j.felder||[]).forEach(n=>n==='privacy'?checkPrivacy():check(map[n]||n));
       err.textContent=j.fehler||'Das Senden hat nicht geklappt. Bitte versuche es nochmals.';
     }catch(x){
       err.textContent='Keine Verbindung. Bitte prüfe dein Internet und versuche es nochmals.';
