@@ -114,7 +114,7 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
   </form>
 
   <div class="done" role="status" aria-live="polite">
-    <h2>Das hat geklappt, <span id="dn"></span>.</h2>
+    <h2>Vielen Dank, <span id="dn"></span>.</h2>
     <p>Deine Angaben sind bei uns angekommen. Wir melden uns, sobald eine passende Stelle frei wird.</p>
   </div>
 </div></section></main>
