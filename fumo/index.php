@@ -30,7 +30,7 @@ body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 Heebo,"Helvet
 
 /* Inhalt */
 main{flex:1}
-.band{padding:clamp(56px,9vw,120px) max(5vw,16px) clamp(48px,7vw,96px)}
+.band{padding:clamp(56px,9vw,120px) max(5vw,16px) clamp(80px,11vw,150px)}
 .wrap{max-width:560px;margin:0 auto}
 h1{font-weight:700;font-size:clamp(32px,5vw,46px);line-height:1.1;margin:0 0 16px;text-wrap:balance}
 .intro{font-size:17px;margin:0 0 36px;max-width:60ch}
