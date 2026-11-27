@@ -66,10 +66,10 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
 .check.bad input{border-color:var(--err);background:light-dark(#ffc3c3,#4a1f1f)}
 .checks .msg{display:block;min-height:18px;font-size:13px;color:var(--err);padding-left:32px}
 /* Bestätigung */
-.done{display:none;background:var(--soft);padding:28px 28px 30px;border-left:4px solid var(--ok)}
-.done h2{font-size:24px;line-height:1.2;margin:0 0 8px}
-.done p{margin:0}
-.sent form,.sent .intro{display:none}
+.done{display:none}
+.done h2{font-weight:700;font-size:clamp(32px,5vw,46px);line-height:1.1;margin:0 0 16px;text-wrap:balance}
+.done p{font-size:17px;margin:0;max-width:60ch}
+.sent h1,.sent form,.sent .intro{display:none}
 .sent .done{display:block}
 
 /* Footer: schwarzer Balken wie footer-meta der Website */
@@ -114,7 +114,7 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
   </form>
 
   <div class="done" role="status" aria-live="polite">
-    <h2>Danke, <span id="dn"></span>!</h2>
+    <h2>Das hat geklappt, <span id="dn"></span>.</h2>
     <p>Deine Angaben sind bei uns angekommen. Wir melden uns, sobald eine passende Stelle frei wird.</p>
   </div>
 </div></section></main>
