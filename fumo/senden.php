@@ -83,7 +83,7 @@ foreach ($d as $k => $v) {
 }
 $ja = fn($n) => empty($_POST[$n]) ? 'Nein' : 'Ja';
 $text .= "\nScrambl. Talentpool:       " . $ja('talentpool') . "\n";
-$text .= "Zugang für Offumo:         " . $ja('partner_access') . "\n";
+$text .= "Zugang für Fuchs-Movesa:   " . $ja('partner_access') . "\n";
 $text .= "Datenschutz zur Kenntnis:  " . $ja('privacy') . "\n";
 $text .= "\nEingegangen:  " . date('d.m.Y, H:i') . " Uhr\n";
 $text .= 'Quelle:       ' . QUELLE . "\n";

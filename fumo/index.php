@@ -109,7 +109,7 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
     <p class="consent">Wir achten darauf, sorgfältig und respektvoll mit deinen Bewerberinformationen umzugehen. Deine Daten werden in der Regel nach 3 Monaten gelöscht, wenn kein aktiver Bewerbungsprozess besteht oder wenn du nicht in den Talentpool aufgenommen wirst. Wenn du zustimmst, im Talentpool zu sein, werden deine Daten ein Jahr gespeichert. So können wir dich für zukünftige Stellenangebote berücksichtigen und dich direkt kontaktieren, wenn passende Möglichkeiten verfügbar sind. Auf deinen Wunsch hin können wir deine Daten jederzeit löschen – hierfür reicht eine kurze Anfrage.</p>
     <div class="checks">
       <label class="check"><input type="checkbox" name="talentpool" value="1"><span>Ich möchte Teil des Scrambl. Talentpools werden</span></label>
-      <label class="check"><input type="checkbox" name="partner_access" value="1"><span>Ich möchte, dass Offumo Zugang zu meinem Talentpool-Profil erhält</span></label>
+      <label class="check"><input type="checkbox" name="partner_access" value="1"><span>Ich möchte, dass Fuchs-Movesa Zugang zu meinem Talentpool-Profil erhält</span></label>
       <label class="check" id="privacy-f"><input type="checkbox" id="privacy" name="privacy" value="1" required aria-describedby="privacy-m"><span>Ich habe die <a href="/datenschutz.php" target="_blank" rel="noopener">Datenschutzerklärung</a> zur Kenntnis genommen *</span></label>
       <span class="msg" id="privacy-m"></span>
     </div>
