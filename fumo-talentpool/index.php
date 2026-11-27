@@ -33,7 +33,7 @@ main{flex:1}
 .band{padding:clamp(56px,9vw,120px) max(5vw,16px) clamp(80px,11vw,150px)}
 .wrap{max-width:780px;margin:0 auto}
 h1{font-weight:700;font-size:clamp(32px,5vw,46px);line-height:1.1;margin:0 0 16px;text-wrap:balance}
-.intro{font-size:17px;margin:0 0 36px;max-width:60ch}
+.intro{font-size:17px;margin:0 0 36px}
 
 /* Felder im Stil der Website: Unterstrich-Feld mit schwebendem Label */
 form{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:8px 28px}
@@ -68,7 +68,7 @@ button:disabled{background:#b1b1b1;border-color:#b1b1b1;color:#fff;cursor:not-al
 /* Bestätigung */
 .done{display:none}
 .done h2{font-weight:700;font-size:clamp(32px,5vw,46px);line-height:1.1;margin:0 0 16px;text-wrap:balance}
-.done p{font-size:17px;margin:0;max-width:60ch}
+.done p{font-size:17px;margin:0}
 .sent h1,.sent form,.sent .intro{display:none}
 .sent .done{display:block}
 
