@@ -7,6 +7,7 @@
  */
 require_once __DIR__ . '/../config.php';
 require_once __DIR__ . '/../mailer.php';
+require_once __DIR__ . '/pdf.php';
 
 // ---- Einstellungen ---------------------------------------------------------
 const EMPFAENGER = 'app@scrambl.org';                 // wer die Anmeldungen bekommt (eine Adresse)
@@ -103,13 +104,29 @@ $text .= $zeile('Unternehmen:', 'Fuchs-Movesa');
 $text .= $zeile('Kanal:', 'QR-Code-Kampagne');
 $text .= $zeile('Seite:', SEITE);
 
-$text .= "\nMit «Antworten» schreibst du direkt an " . $d['E-Mail'] . ".\n";
+$text .= "\nDie Angaben sind auch als PDF angehängt.\nMit «Antworten» schreibst du direkt an " . $d['E-Mail'] . ".\n";
+
+// PDF mit den Angaben als Anhang
+$pdf = fumo_pdf('Fumo Talentpool', [
+    'KONTAKT' => [
+        ['Vorname:', $d['Vorname']],
+        ['Nachname:', $d['Nachname']],
+        ['Telefon:', $d['Telefon']],
+        ['E-Mail:', $d['E-Mail']],
+    ],
+    'WUNSCHBERUF' => [
+        ['', $d['Wunschberuf']],
+    ],
+]);
+$ascii = fn($v) => trim(preg_replace('/[^A-Za-z0-9]+/', '-', strtr($v, ['ä'=>'ae','ö'=>'oe','ü'=>'ue','Ä'=>'Ae','Ö'=>'Oe','Ü'=>'Ue','é'=>'e','è'=>'e','à'=>'a','ç'=>'c'])), '-');
+$pdfName = 'Fumo-Talentpool_' . $ascii($d['Nachname']) . '_' . $ascii($d['Vorname']) . '_' . date('Y-m-d') . '.pdf';
 
 $gesendet = send_mail(
     EMPFAENGER,
     'Fumo Talentpool – neue Anmeldung: ' . $name . ' (' . $d['Wunschberuf'] . ')',
     $text,
-    ['email' => $d['E-Mail'], 'name' => $name]
+    ['email' => $d['E-Mail'], 'name' => $name],
+    [['name' => $pdfName, 'content' => $pdf]]
 );
 
 if (!$gesendet) {
